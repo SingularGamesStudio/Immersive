@@ -9,7 +9,7 @@ public class JoyBehaviour : MonoBehaviour
     int IsMoving = -1;
     float r;
     public bool Cancelable = false;
-    const float CancelR = 60;
+    public float CancelR = 60;
     public RectTransform RectT;
     public RectTransform Knob;
     // Start is called before the first frame update
