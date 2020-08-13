@@ -24,9 +24,9 @@ public class JoyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool ok = false;
-#if UNITY_EDITOR
-        ok = true;
+        //bool ok = false;
+//#if UNITY_EDITOR
+       // ok = true;
         Vector3 mPos = Input.mousePosition;
         mPos -= new Vector3(Screen.width, Screen.height) / 2f;
         Vector3 RV = mPos - new Vector3(RectT.anchoredPosition.x, RectT.anchoredPosition.y);
@@ -67,12 +67,12 @@ public class JoyBehaviour : MonoBehaviour
             else Knob.anchoredPosition = JoyController.AllJoy[JoyName] * r;
         }
 
-#elif UNITY_STANDALONE
-        ok = true;
+//#elif UNITY_STANDALONE
+        //ok = true;
         //при компиляции скопировать из UNITYEDITOR
-#endif
-        if (!ok) {
+//#endif
+        //if (!ok) {
             //джойстик под андроид
-        }
+        //}
     }
 }

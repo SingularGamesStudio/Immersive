@@ -6,6 +6,14 @@ public class DestObject : MonoBehaviour
 {
     public int hp;
     public BoxCollider2D Inst;
+    public bool CanContain;
+    public bool CanBeDamaged;
+    public bool CanBeMoved;
+    public bool CanBePicked;
+    public bool CanBeUsed;
+    public bool IsWorkbench;
+    public int ThisItem;
+    public GameObject PlayerPos;
     bool ToDestroy = false;
     Animation anim;
     public ParticleSystem PSystem;
@@ -17,17 +25,20 @@ public class DestObject : MonoBehaviour
     }
     public void dealDamage(int Damage)
     {
-        hp -= Damage;
-        if (hp <= 0)
+        if (CanBeDamaged)
         {
-            die();
-        }
-        else
-        {
-            anim.Stop();
-            anim.clip = anim.GetClip("Init");
-            anim.Play();
-            anim.PlayQueued("Dmg", QueueMode.CompleteOthers);
+            hp -= Damage;
+            if (hp <= 0)
+            {
+                die();
+            }
+            else
+            {
+                anim.Stop();
+                anim.clip = anim.GetClip("Init");
+                anim.Play();
+                anim.PlayQueued("Dmg", QueueMode.CompleteOthers);
+            }
         }
     }
     public void die()
@@ -39,7 +50,10 @@ public class DestObject : MonoBehaviour
         PSystem.Stop(true);
         PSystem.Play(true);
     }
-
+    public void use()//use by npc
+    {
+        Debug.Log("Used "+gameObject.name);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
