@@ -34,6 +34,12 @@ public class GenerateHouse : MonoBehaviour
             }
                     List<Vector2Int> Doors = new List<Vector2Int>();
             GameObject parent = new GameObject();
+            GameObject ParentBase = new GameObject();
+            GameObject WallParent = new GameObject();
+            parent.transform.SetParent(ParentBase.transform);
+            WallParent.transform.SetParent(ParentBase.transform);
+            parent.name = "Floor";
+            WallParent.name = "Walls";
             Debug.Log(sp.GetPixel(0, 0));
             for(int i = 0; i<n; i++)
             {
@@ -94,7 +100,7 @@ public class GenerateHouse : MonoBehaviour
                         {
                             GameObject g = Instantiate(GenerateRes._g.Walls[WallNum].doord);
                             g.transform.position = new Vector3(-i, j);
-                            g.transform.parent = parent.transform;
+                            g.transform.parent = WallParent.transform;
                         }
                         bool up = false;
                         bool down = false;
@@ -616,7 +622,7 @@ public class GenerateHouse : MonoBehaviour
                             }
                         }
                         g.transform.position = new Vector3(-i, j);
-                        g.transform.parent = parent.transform;
+                        g.transform.parent = WallParent.transform;
                     } else
                     {
                         if (c[i, j] != -1)

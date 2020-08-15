@@ -8,10 +8,12 @@ public class GlobalUpdater : MonoBehaviour
     public static GlobalUpdater _g;
     bool DroppedNow;
     public bool PickedNow;
+    public GameObject PathF;
     public List<Item> AllItems;
     void Awake()
     {
         _g = this;
+        Global.PathFinder = PathF;
         Global.Empty = Empty;
         GameObject[] temp = GameObject.FindGameObjectsWithTag("ChillPoint");
         Global.Canvas = GameObject.Find("Canvas");
