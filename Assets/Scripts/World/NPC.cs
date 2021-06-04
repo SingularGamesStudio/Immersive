@@ -1,16 +1,22 @@
-﻿using Pathfinding;
+﻿//using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class NPC : DestObject
 {
     public Person me;
     public int Hunger;
     public int Alcohol;
     public int Happiness = 100;
     public int Money;
+    private Contain _inventory;
+
+    public Contain Inventory {
+        get { return _inventory; }
+        set { _inventory = value; }
+    }
 
     [Header("Behavior Model")]
     public Profession MyProf;
@@ -19,7 +25,7 @@ public class NPC : MonoBehaviour
     public string Doing;
 
     GameObject Target;
-    AIDestinationSetter ADS;
+    //AIDestinationSetter ADS;
     // Start is called before the first frame update
     [System.Serializable]
     public class Person
@@ -82,8 +88,8 @@ public class NPC : MonoBehaviour
     {
         Target =new GameObject();
         Target.transform.position = gameObject.transform.position;
-        ADS = gameObject.GetComponent<AIDestinationSetter>();
-        ADS.target = Target.transform;
+        //ADS = gameObject.GetComponent<AIDestinationSetter>();
+        //ADS.target = Target.transform;
     }
     int TTNow, TTNowTime;
     bool Staying;

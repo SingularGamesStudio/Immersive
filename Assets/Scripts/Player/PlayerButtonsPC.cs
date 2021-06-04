@@ -43,15 +43,15 @@ public class PlayerButtonsPC : MonoBehaviour
                 else
                 {
                     pl.findInteractObject();
-                    if (pl.NowActions.CanContain)
+                    if (pl.NowActions != null && pl.NowActions.CanContain)
                     {
                         pl.openActive();
                     }
-                    else if (pl.NowActions.CanBeUsed)
+                    else if (pl.NowActions != null && pl.NowActions.CanBeUsed)
                     {
                         //use
                     }
-                    else if (pl.NowActions.IsWorkbench)
+                    else if (pl.NowActions != null && pl.NowActions.IsWorkbench)
                     {
                         //work at
                     }
@@ -69,7 +69,7 @@ public class PlayerButtonsPC : MonoBehaviour
                 if (HoldingF >= LongTouchLen)
                 {
                     pl.findInteractObject();
-                    if (pl.NowActions.CanBeMoved)
+                    if (pl.NowActions != null && pl.NowActions.CanBeMoved)
                     {
                         pl.takeActive();
                     }
@@ -77,7 +77,7 @@ public class PlayerButtonsPC : MonoBehaviour
                 else
                 {
                     pl.findInteractObject();
-                    if (pl.NowActions.CanBePicked)
+                    if (pl.NowActions!=null && pl.NowActions.CanBePicked)
                     {
                         pl.pickActive();
                     }

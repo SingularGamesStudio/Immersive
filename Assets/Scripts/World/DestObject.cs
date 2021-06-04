@@ -4,19 +4,47 @@ using UnityEngine;
 
 public class DestObject : MonoBehaviour
 {
+    public _Params Object_Params;
+
+    [HideInInspector]
     public int hp;
+    [HideInInspector]
     public BoxCollider2D Inst;
+    [HideInInspector]
     public bool CanContain;
+    [HideInInspector]
     public bool CanBeDamaged;
+    [HideInInspector]
     public bool CanBeMoved;
+    [HideInInspector]
     public bool CanBePicked;
+    [HideInInspector]
     public bool CanBeUsed;
+    [HideInInspector]
     public bool IsWorkbench;
+    [HideInInspector]
     public int ThisItem;
+    [HideInInspector]
     public GameObject PlayerPos;
     bool ToDestroy = false;
     Animation anim;
     public ParticleSystem PSystem;
+
+    [System.Serializable]
+    public class _Params
+    {
+        public int HP;
+        public BoxCollider2D Trigger;
+        public bool CanContain;
+        public bool CanBeDamaged;
+        public bool CanBeMoved;
+        public bool CanBePicked;
+        public bool CanBeUsed;
+        public bool IsWorkbench;
+        public int ThisItem;
+        public GameObject PlayerPos;
+    };
+
     // Start is called before the first frame update
     void Start()
     {

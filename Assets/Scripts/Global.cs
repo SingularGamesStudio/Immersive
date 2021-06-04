@@ -16,5 +16,4 @@ public static class Global
     public static System.Random rnd = new System.Random(42);
     public static List<Contain> Opened = new List<Contain>();
     public static float SpriteScaling = 20;
-    public static GameObject PathFinder;
 }

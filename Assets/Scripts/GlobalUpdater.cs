@@ -7,13 +7,12 @@ public class GlobalUpdater : MonoBehaviour
     public Sprite Empty;
     public static GlobalUpdater _g;
     bool DroppedNow;
+    [HideInInspector]
     public bool PickedNow;
-    public GameObject PathF;
     public List<Item> AllItems;
     void Awake()
     {
         _g = this;
-        Global.PathFinder = PathF;
         Global.Empty = Empty;
         GameObject[] temp = GameObject.FindGameObjectsWithTag("ChillPoint");
         Global.Canvas = GameObject.Find("Canvas");
@@ -53,8 +52,9 @@ public class GlobalUpdater : MonoBehaviour
             {
                 GameObject g = Instantiate(Drag.now.Instance);
                 g.transform.position = Player._p.transform.position;
-                Vector3 Force = (Camera.main.ScreenToWorldPoint(Input.mousePosition)-Player._p.transform.position).normalized*Player._p.ThrowForce;
-                g.GetComponent<Rigidbody2D>().AddForce(Force);
+                Vector3 vel = Camera.main.ScreenToWorldPoint(Input.mousePosition)-Player._p.transform.position;
+                Rigidbody2D rb1 = g.GetComponent<Rigidbody2D>();
+                rb1.velocity = vel*rb1.drag;
                 Drag.now = Global.NullItem;
             }
         }

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class SpriteLevel : MonoBehaviour
 {
-    SpriteRenderer sp;
-    public SpriteRenderer spp;
+    public List<SpriteRenderer> sp;
+    public SpriteLevel par;
     public int Type;
     public Transform LegPoint;
+    [HideInInspector]
+    public int level;
     // Start is called before the first frame update
     void Start()
     {
-        sp = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -19,20 +20,23 @@ public class SpriteLevel : MonoBehaviour
     {
         if (Type == 0)
         {
-            sp.sortingOrder = 32759-((int)(LegPoint.position.y * Global.SpriteScaling))*5;
-            if (sp.sortingOrder < 0)
+            level = 32759-((int)(LegPoint.position.y * Global.SpriteScaling))*5;
+            if (level < 0)
                 Debug.LogError("превышен вертикальный размер мира");
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (Type == 1)
-        {
-            sp.sortingOrder = spp.sortingOrder + 1;
-        } else if (Type == 2)
-        {
-            sp.sortingOrder = spp.sortingOrder - 1;
+            else foreach(SpriteRenderer s in sp){
+                if(s.gameObject.activeSelf)
+                    s.sortingOrder = level;
+			}
+        } else if (Type == 1) {
+            foreach (SpriteRenderer s in sp) {
+                if (s.gameObject.activeSelf)
+                    s.sortingOrder = par.level + 1;
+            }
+        } else if (Type == 2) {
+            foreach (SpriteRenderer s in sp) {
+                if (s.gameObject.activeSelf)
+                    s.sortingOrder = par.level - 1;
+            }
         }
     }
 }
