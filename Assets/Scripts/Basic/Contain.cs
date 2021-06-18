@@ -11,7 +11,7 @@ public class Contain : MonoBehaviour
     public Vector2Int size;
     public bool HasBooks;
     public bool HasFood;
-    public List<Item> Items = new List<Item>();
+    public List<int> Items = new List<int>();
     List<Slot> Slots = new List<Slot>();
     int[,] num;
     public GameObject Ui;
@@ -25,13 +25,15 @@ public class Contain : MonoBehaviour
         }
         while (Items.Count < size.x * size.y)
         {
-            Items.Add(new Item(false)) ;
+            Items.Add(-1) ;
         }
     }
     public void open()
     {
+        
         if (UiInst == null)
         {
+            
             UiInst = Instantiate(Ui);
             UiInst.transform.SetParent(Global.Canvas.transform, false);
             Global.Opened.Add(this);

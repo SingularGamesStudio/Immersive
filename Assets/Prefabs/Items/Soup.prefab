@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4986454765673057958}
-  - component: {fileID: 2954172821485594079}
+  - component: {fileID: 4188501447265323902}
+  - component: {fileID: 829685785652069963}
   - component: {fileID: 4041701528638154267}
   - component: {fileID: 5634100887981019738}
   - component: {fileID: 2194247385163210089}
@@ -37,7 +38,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2954172821485594079
+--- !u!114 &4188501447265323902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194247385163210103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4787a2504f014fb43a58c54de2d33aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  CanContain: 0
+  CanBeDamaged: 0
+  CanBeHauled: 0
+  CanBePicked: 1
+  CanBeUsed: 0
+  IsWorkbench: 0
+  ItemNumber: 0
+  PlayerPos: {fileID: 0}
+--- !u!114 &829685785652069963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,17 +71,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c6d9de6c74cc84b80cb997aae3f5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
-  Inst: {fileID: 5634100887981019738}
+  hp: 0
+  Inst: {fileID: 0}
   CanContain: 0
   CanBeDamaged: 0
-  CanBeMoved: 0
-  CanBePicked: 1
+  CanBeHauled: 0
+  CanBePicked: 0
   CanBeUsed: 0
   IsWorkbench: 0
-  ThisItem: 0
+  ItemNumber: 0
   PlayerPos: {fileID: 0}
-  PSystem: {fileID: 0}
 --- !u!111 &4041701528638154267
 Animation:
   m_ObjectHideFlags: 0
@@ -184,7 +205,7 @@ GameObject:
   - component: {fileID: 7770583513866510328}
   - component: {fileID: 6976504646950919420}
   m_Layer: 0
-  m_Name: image_5
+  m_Name: SpriteHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

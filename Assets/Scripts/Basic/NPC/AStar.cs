@@ -4,8 +4,10 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AStar : MonoBehaviour
 {
+    public static AStar _a;
     public bool upd;
     bool[,] a;
+    public bool showGrid;
     public Transform ldPoint;
     public Transform ruPoint;
     public Vector2Int sz;
@@ -15,6 +17,7 @@ public class AStar : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _a = this;
         upd_done = false;
     }
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class AStar : MonoBehaviour
             }
             Physics2D.queriesHitTriggers = true;
         }
-        if (upd_done) {
+        if (upd_done && showGrid) {
             for (int i = 0; i < sz.x; i++) {
                 for (int j = 0; j < sz.y; j++) {
                     Vector3 v = ldPoint.position;
@@ -64,6 +67,23 @@ public class AStar : MonoBehaviour
                 }
             }
         }
+    }
+
+    public Vector2Int getLocalPos(Vector3 pos)
+    {
+        pos = pos - ldPoint.position;
+        if(pos.x<0 || pos.y < 0)
+        {
+            Debug.LogError("Position outside of Astar");
+            return new Vector2Int(0, 0);
+        }
+        Vector2Int ans = new Vector2Int((int)(pos.x / cell), (int)(pos.y / cell));
+        if(pos.x>=sz.x || pos.y >= sz.y)
+        {
+            Debug.LogError("Position outside of Astar");
+            return new Vector2Int(0, 0);
+        }
+        return ans;
     }
 
     void Calc(int x1, int y1, int x2, int y2) {

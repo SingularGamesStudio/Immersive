@@ -40,7 +40,6 @@ public class GenerateHouse : MonoBehaviour
             WallParent.transform.SetParent(ParentBase.transform);
             parent.name = "Floor";
             WallParent.name = "Walls";
-            Debug.Log(sp.GetPixel(0, 0));
             for(int i = 0; i<n; i++)
             {
                 for(int j = 0; j<m; j++)

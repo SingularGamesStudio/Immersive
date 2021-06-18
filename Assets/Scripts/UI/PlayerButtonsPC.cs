@@ -69,7 +69,7 @@ public class PlayerButtonsPC : MonoBehaviour
                 if (HoldingF >= LongTouchLen)
                 {
                     pl.findInteractObject();
-                    if (pl.NowActions != null && pl.NowActions.CanBeMoved)
+                    if (pl.NowActions != null && pl.NowActions.CanBeHauled)
                     {
                         pl.takeActive();
                     }
@@ -77,6 +77,7 @@ public class PlayerButtonsPC : MonoBehaviour
                 else
                 {
                     pl.findInteractObject();
+
                     if (pl.NowActions!=null && pl.NowActions.CanBePicked)
                     {
                         pl.pickActive();

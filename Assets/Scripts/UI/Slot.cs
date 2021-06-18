@@ -16,26 +16,26 @@ public class Slot : MonoBehaviour
     }
     public void updateContents()
     {
-        if (parent.Items[num].IsNull)
+        if (parent.Items[num]==-1)
         {
             img.sprite = Global.Empty;
-        } else img.sprite = parent.Items[num].sp;
+        } else img.sprite = Global.AllItems[parent.Items[num]].sp;
     }
     public void startDrag() {
-        if (!parent.Items[num].IsNull)
+        if (parent.Items[num]!=-1)
         {
             Drag.now = parent.Items[num];
             img.sprite = Global.Empty;
-            parent.Items[num] = Global.NullItem;
+            parent.Items[num] = -1;
         }
     }
     public void endDrag()
     {
-        if (!Drag.now.IsNull)
+        if (Drag.now!=-1)
         {
             parent.Items[num] = Drag.now;
-            img.sprite = parent.Items[num].sp;
-            Drag.now = Global.NullItem;
+            img.sprite = Global.AllItems[parent.Items[num]].sp;
+            Drag.now = -1;
         }
     }
     // Update is called once per frame
@@ -44,9 +44,9 @@ public class Slot : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Vector3 mPos = Input.mousePosition;
-            if (parent.Items[num].IsNull && RectTransformUtility.RectangleContainsScreenPoint(RectT, mPos))
+            if (parent.Items[num]==-1 && RectTransformUtility.RectangleContainsScreenPoint(RectT, mPos))
             {
-                GlobalUpdater._g.PickedNow = true;
+                Global.PickedNow = true;
                 endDrag();
             }
         }

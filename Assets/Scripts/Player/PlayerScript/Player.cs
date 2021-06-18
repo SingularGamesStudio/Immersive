@@ -3,42 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player: NPC
 {
-    public _Params Player_Params;
     public static Player _p;
 
-    [HideInInspector]
-    public DestObject NowActions;
-    [HideInInspector]
-    public DestObject Holding;
+    /*Hidden Params*/
+    float Speed = 2;
+    float RotationSpeed = 0.1f;
+    float AttackDist = 0.5f;
+    float AttackAngle = 20;
+    int Damage = 3;
 
-    GameObject Weapon;
-    float Speed;
-    float RotationSpeed;
+    public DestObject NowActions;
+    public DestObject Holding;
+    GameObject Weapon = null;
     Color SkinColor;
     Rigidbody2D rb;
     List<SpriteRenderer> SkinObjects = new List<SpriteRenderer>();
     Animation Anim;
     Animation AttackAnim;
-    float AttackDist;
-    float AttackAngle;
-    int Damage;
+
     GameObject Actions;
     float RotationNow;
     Vector2 TargetRotation = new Vector2(1, 0);
     Quaternion RotationR, RotationL;
 
-
-    [System.Serializable]
-    public class _Params {
-        public int HP;
-    };
-
     // Start is called before the first frame update
     void Start()
     {
         _p = this;
+        CopyInspector.copy(gameObject.GetComponent<PlayerParams>(), this);
+        //
         rb = gameObject.GetComponent<Rigidbody2D>();
         RotationR = Quaternion.identity;
         RotationL = Quaternion.AngleAxis(180, Vector3.up);
@@ -156,15 +152,15 @@ public class Player: NPC
     {
         if (NowActions.CanBePicked) {
             int ok = -1; int temp = 0;
-            foreach (Item now in Inventory.Items) {
-                if (now.IsNull) {
+            foreach (int now in Inventory.Items) {
+                if (now==-1) {
                     ok = temp;
                     break;
                 }
                 temp++;
             }
             if (ok >= 0) {
-                Inventory.Items[ok] = GlobalUpdater._g.AllItems[NowActions.ThisItem];
+                Inventory.Items[ok] = NowActions.ItemNumber;
                 Global.DestroyableObjects.Remove(NowActions);
                 Destroy(NowActions.gameObject);
             }
@@ -172,7 +168,7 @@ public class Player: NPC
     }
     public void takeActive()
     {
-        if (NowActions.CanBeMoved) {
+        if (NowActions.CanBeHauled) {
             dropHauling();
             NowActions.gameObject.transform.parent = transform;
             NowActions.gameObject.transform.localPosition = -NowActions.PlayerPos.transform.localPosition;
@@ -200,7 +196,6 @@ public class Player: NPC
         foreach(DestObject o in Global.DestroyableObjects)
         {
             if (o.CanBeDamaged) {
-                Debug.Log(RotationNow);
                 Vector2 dot1 = (Vector2)o.gameObject.transform.position + (o.Inst.offset - o.Inst.size / 2f) * o.transform.lossyScale;
                 Vector2 dot2 = (Vector2)o.gameObject.transform.position + (o.Inst.offset + o.Inst.size / 2f) * o.transform.lossyScale;
                 bool ok = false;

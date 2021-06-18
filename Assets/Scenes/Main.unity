@@ -530,7 +530,7 @@ PrefabInstance:
     - target: {fileID: 6996918451701212186, guid: 471f484f5cb3ea440a9570991149ca14,
         type: 3}
       propertyPath: m_Name
-      value: New Game Object
+      value: House
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 471f484f5cb3ea440a9570991149ca14, type: 3}
@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upd: 0
+  showGrid: 0
   ldPoint: {fileID: 2098919225}
   ruPoint: {fileID: 1370446179}
   sz: {x: 71, y: 71}
@@ -1064,12 +1065,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Empty: {fileID: 21300000, guid: 539676f3664ce0c4d9ba7db4d0d49807, type: 3}
-  PickedNow: 0
-  AllItems:
-  - IsNull: 0
-    sp: {fileID: 21300000, guid: d309020d986e57048a4660dea255489b, type: 3}
+  items:
+  - sp: {fileID: 21300000, guid: d309020d986e57048a4660dea255489b, type: 3}
     Instance: {fileID: 2194247385163210103, guid: f1b8250165194fc408d42883ecae702f,
       type: 3}
+  update: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1169,7 +1169,7 @@ MonoBehaviour:
   size: {x: 1, y: 1}
   HasBooks: 0
   HasFood: 0
-  Items: []
+  Items: ffffffff
   Ui: {fileID: 0}
 --- !u!1 &561146531
 GameObject:
@@ -2333,16 +2333,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1608993847}
-  - component: {fileID: 1608993848}
+  - component: {fileID: 1608993855}
   - component: {fileID: 1306604125}
   - component: {fileID: 1608993850}
   - component: {fileID: 1608993849}
   - component: {fileID: 1608993851}
   - component: {fileID: 1608993852}
   - component: {fileID: 1608993853}
+  - component: {fileID: 1608993848}
   m_Layer: 10
   m_Name: Player
-  m_TagString: Object
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2377,19 +2378,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf85a9e3708eff418e2ca5393b296dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 854692923}
-  Speed: 2
-  RotationSpeed: 0.1
-  SkinColor: {r: 0.8584906, g: 0.6519669, b: 0.6519669, a: 0}
-  SkinObjects:
-  - {fileID: 496421222}
-  - {fileID: 8886804906308882824}
-  - {fileID: 8886804906338810112}
-  AttackDist: 0.38
-  AttackAngle: 30
-  Damage: 4
-  Actions: {fileID: 1855149834}
-  Inventory: {fileID: 1608993851}
+  hp: 0
+  Inst: {fileID: 0}
+  CanContain: 0
+  CanBeDamaged: 0
+  CanBeHauled: 0
+  CanBePicked: 0
+  CanBeUsed: 0
+  IsWorkbench: 0
+  ItemNumber: 0
+  Inventory: {fileID: 0}
+  PlayerPos: {fileID: 0}
+  selfID: 0
+  need:
+    Hunger: 0
+    HungerRate: 0
+    HungerMax: 0
+    Thirst: 0
+    ThirstRate: 0
+    ThirstMax: 0
+    Sleep: 0
+    SleepRate: 0
+    SleepMax: 0
   NowActions: {fileID: 0}
   Holding: {fileID: 0}
 --- !u!50 &1608993849
@@ -2455,7 +2465,7 @@ MonoBehaviour:
   size: {x: 4, y: 1}
   HasBooks: 0
   HasFood: 0
-  Items: []
+  Items: ffffffffffffffff00000000ffffffff
   Ui: {fileID: 913416900924864940, guid: 8e9c9635f7e1e1045acda54f7b0f5381, type: 3}
 --- !u!114 &1608993852
 MonoBehaviour:
@@ -2491,6 +2501,24 @@ MonoBehaviour:
   Type: 0
   LegPoint: {fileID: 1617377387}
   level: 0
+--- !u!114 &1608993855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608993846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edad2f8047e7cde438a92d04dc2f2caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkinColor: {r: 0.6320754, g: 0.4394102, b: 0.21764861, a: 0}
+  SkinObjects:
+  - {fileID: 496421222}
+  Weapon: {fileID: 854692923}
+  Inventory: {fileID: 1608993851}
+  hp: 101
 --- !u!1 &1617377386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2984,6 +3012,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
+        type: 3}
+      propertyPath: Items.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
+        type: 3}
+      propertyPath: Items.Array.data[2].IsNull
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
+        type: 3}
+      propertyPath: Items.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
+        type: 3}
+      propertyPath: Items.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
+        type: 3}
+      propertyPath: Items.Array.data[2]
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5783695832712873991, guid: c462011f38c4a084e83e1102cd6992b7,
         type: 3}

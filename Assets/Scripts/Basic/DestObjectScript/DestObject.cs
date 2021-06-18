@@ -1,54 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(DestObjectParams))]
 public class DestObject : MonoBehaviour
 {
-    public _Params Object_Params;
-
-    [HideInInspector]
     public int hp;
-    [HideInInspector]
     public BoxCollider2D Inst;
-    [HideInInspector]
     public bool CanContain;
-    [HideInInspector]
     public bool CanBeDamaged;
-    [HideInInspector]
-    public bool CanBeMoved;
-    [HideInInspector]
+    public bool CanBeHauled;
     public bool CanBePicked;
-    [HideInInspector]
     public bool CanBeUsed;
-    [HideInInspector]
     public bool IsWorkbench;
-    [HideInInspector]
-    public int ThisItem;
-    [HideInInspector]
+    public int ItemNumber;
+    public Contain Inventory;
     public GameObject PlayerPos;
     bool ToDestroy = false;
     Animation anim;
-    public ParticleSystem PSystem;
-
-    [System.Serializable]
-    public class _Params
-    {
-        public int HP;
-        public BoxCollider2D Trigger;
-        public bool CanContain;
-        public bool CanBeDamaged;
-        public bool CanBeMoved;
-        public bool CanBePicked;
-        public bool CanBeUsed;
-        public bool IsWorkbench;
-        public int ThisItem;
-        public GameObject PlayerPos;
-    };
+    public int selfID;
+    ParticleSystem PSystem;
 
     // Start is called before the first frame update
+    
     void Start()
     {
+        
+        CopyInspector.copy(gameObject.GetComponent<DestObjectParams>(), this);
+        Transform t = transform.Find("ParticleSystem");
+        if (t != null)
+            PSystem = t.gameObject.GetComponent<ParticleSystem>();
+        t = transform.Find("SpriteHolder");
+        if (t != null)
+            Inst = t.gameObject.GetComponent<BoxCollider2D>();
+        else Debug.LogError("DestObject has no child named SpriteHolder with BoxCollider(Trigger) attached to it");
         Global.DestroyableObjects.Add(this);
+        Inventory = gameObject.GetComponent<Contain>();
         anim = gameObject.GetComponent<Animation>();
     }
     public void dealDamage(int Damage)

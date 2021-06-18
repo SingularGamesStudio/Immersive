@@ -344,11 +344,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 793525069975821270}
-  - component: {fileID: 7408153583297409199}
+  - component: {fileID: 2317645442117592746}
   - component: {fileID: 8513873436523164523}
   - component: {fileID: 1089193770}
   - component: {fileID: 2099215933072029863}
   - component: {fileID: 7701230382766627488}
+  - component: {fileID: -832240912786043937}
   m_Layer: 0
   m_Name: BasicDestObject
   m_TagString: Object
@@ -374,7 +375,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7408153583297409199
+--- !u!114 &2317645442117592746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -386,17 +387,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c6d9de6c74cc84b80cb997aae3f5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
-  Inst: {fileID: 1262005910}
-  CanContain: 1
-  CanBeDamaged: 1
-  CanBeMoved: 1
+  hp: 0
+  Inst: {fileID: 0}
+  CanContain: 0
+  CanBeDamaged: 0
+  CanBeHauled: 0
   CanBePicked: 0
   CanBeUsed: 0
   IsWorkbench: 0
-  ThisItem: 0
-  PlayerPos: {fileID: 2099215933048135166}
-  PSystem: {fileID: 8797838972367096106}
+  ItemNumber: 0
+  PlayerPos: {fileID: 0}
 --- !u!111 &8513873436523164523
 Animation:
   m_ObjectHideFlags: 0
@@ -486,6 +486,27 @@ MonoBehaviour:
   Type: 0
   LegPoint: {fileID: 922644067}
   level: 0
+--- !u!114 &-832240912786043937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783695832712873991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4787a2504f014fb43a58c54de2d33aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 8
+  CanContain: 1
+  CanBeDamaged: 1
+  CanBeHauled: 1
+  CanBePicked: 0
+  CanBeUsed: 0
+  IsWorkbench: 0
+  ItemNumber: 0
+  PlayerPos: {fileID: 2099215933048135166}
 --- !u!1 &8205665511754662692
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +519,7 @@ GameObject:
   - component: {fileID: 8797838972367096106}
   - component: {fileID: 6479933311894343390}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
