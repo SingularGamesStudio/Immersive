@@ -658,12 +658,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeef41a7e093f78478d89c9f4e93fde9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upd: 0
   showGrid: 0
   ldPoint: {fileID: 2098919225}
   ruPoint: {fileID: 1370446179}
   sz: {x: 71, y: 71}
   cell: 0.4
+  chunksize: 10
 --- !u!1 &401679049
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,6 +883,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soup (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2194247385163210103, guid: f1b8250165194fc408d42883ecae702f,
+        type: 3}
+      propertyPath: m_TagString
+      value: add
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188501447265323902, guid: f1b8250165194fc408d42883ecae702f,
+        type: 3}
+      propertyPath: id
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4986454765673057958, guid: f1b8250165194fc408d42883ecae702f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1069,7 +1079,6 @@ MonoBehaviour:
   - sp: {fileID: 21300000, guid: d309020d986e57048a4660dea255489b, type: 3}
     Instance: {fileID: 2194247385163210103, guid: f1b8250165194fc408d42883ecae702f,
       type: 3}
-  update: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1731,7 +1740,7 @@ GameObject:
   - component: {fileID: 1290092369}
   m_Layer: 0
   m_Name: EventSystem
-  m_TagString: Untagged
+  m_TagString: add
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2341,6 +2350,7 @@ GameObject:
   - component: {fileID: 1608993852}
   - component: {fileID: 1608993853}
   - component: {fileID: 1608993848}
+  - component: {fileID: 1608993854}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -2387,9 +2397,9 @@ MonoBehaviour:
   CanBeUsed: 0
   IsWorkbench: 0
   ItemNumber: 0
+  actions: []
   Inventory: {fileID: 0}
   PlayerPos: {fileID: 0}
-  selfID: 0
   need:
     Hunger: 0
     HungerRate: 0
@@ -2400,6 +2410,7 @@ MonoBehaviour:
     Sleep: 0
     SleepRate: 0
     SleepMax: 0
+  ID: {fileID: 0}
   NowActions: {fileID: 0}
   Holding: {fileID: 0}
 --- !u!50 &1608993849
@@ -2501,6 +2512,20 @@ MonoBehaviour:
   Type: 0
   LegPoint: {fileID: 1617377387}
   level: 0
+--- !u!114 &1608993854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608993846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52520fb2db1ca3f4bbe50f7b5e94355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0
+  chunk: {x: 0, y: 0}
 --- !u!114 &1608993855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,6 +2585,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Soup (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194247385163210103, guid: f1b8250165194fc408d42883ecae702f,
+        type: 3}
+      propertyPath: m_TagString
+      value: add
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188501447265323902, guid: f1b8250165194fc408d42883ecae702f,
+        type: 3}
+      propertyPath: id
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4986454765673057958, guid: f1b8250165194fc408d42883ecae702f,
         type: 3}
@@ -2958,6 +2993,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -832240912786043937, guid: c462011f38c4a084e83e1102cd6992b7,
+        type: 3}
+      propertyPath: actions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -832240912786043937, guid: c462011f38c4a084e83e1102cd6992b7,
+        type: 3}
+      propertyPath: actions.Array.data[1].requirements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -832240912786043937, guid: c462011f38c4a084e83e1102cd6992b7,
+        type: 3}
+      propertyPath: actions.Array.data[1].events.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 793525069975821270, guid: c462011f38c4a084e83e1102cd6992b7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3012,31 +3062,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
-        type: 3}
-      propertyPath: Items.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
-        type: 3}
-      propertyPath: Items.Array.data[2].IsNull
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
-        type: 3}
-      propertyPath: Items.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
-        type: 3}
-      propertyPath: Items.Array.data[1]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099215933072029863, guid: c462011f38c4a084e83e1102cd6992b7,
-        type: 3}
-      propertyPath: Items.Array.data[2]
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5783695832712873991, guid: c462011f38c4a084e83e1102cd6992b7,
         type: 3}

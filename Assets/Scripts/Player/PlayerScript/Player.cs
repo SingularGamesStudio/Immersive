@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(IDHolder))]
 public class Player: NPC
 {
     public static Player _p;

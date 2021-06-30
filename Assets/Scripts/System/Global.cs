@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public static class Global
 {
     public static List<Transform> ChillPoints = new List<Transform>();
@@ -18,12 +17,12 @@ public static class Global
     public static List<Contain> Opened = new List<Contain>();
     public static float SpriteScaling = 20;
     public static List<Item> AllItems;
-    public static Dictionary<int, GameObject> ID = new Dictionary<int, GameObject>();
+    public static Dictionary<long, IDHolder> ID = new Dictionary<long, IDHolder>();
 
-    public static void add(int id, GameObject g)
+    public static void add(long id, IDHolder g)
     {
-        if (ID[id] != null)
+        if (ID.ContainsKey(id))
             Debug.LogError(g.name + " has same ID as " + ID[id].name);
-        else ID[id] = g;
+        else ID.Add(id, g);
     }
 }

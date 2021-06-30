@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 5634100887981019738}
   - component: {fileID: 2194247385163210089}
   - component: {fileID: 9110287703158410318}
+  - component: {fileID: -6298300286819954747}
   m_Layer: 11
   m_Name: Soup
-  m_TagString: Object
+  m_TagString: add
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,6 +81,7 @@ MonoBehaviour:
   CanBeUsed: 0
   IsWorkbench: 0
   ItemNumber: 0
+  Inventory: {fileID: 0}
   PlayerPos: {fileID: 0}
 --- !u!111 &4041701528638154267
 Animation:
@@ -163,6 +165,19 @@ MonoBehaviour:
   Type: 0
   LegPoint: {fileID: 1379939594825368138}
   level: 0
+--- !u!114 &-6298300286819954747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194247385163210103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52520fb2db1ca3f4bbe50f7b5e94355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: -1
 --- !u!1 &6267875329833793039
 GameObject:
   m_ObjectHideFlags: 0

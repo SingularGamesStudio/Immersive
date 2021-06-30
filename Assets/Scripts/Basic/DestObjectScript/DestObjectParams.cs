@@ -12,6 +12,7 @@ public class DestObjectParams : MonoBehaviour
     public bool CanBeUsed;
     public bool IsWorkbench;
     public int ItemNumber;
+    public List<GameAction> actions = new List<GameAction>();
     [Tooltip("Where the player stays when hauling (Relatively to this)")]
     public GameObject PlayerPos;
 }

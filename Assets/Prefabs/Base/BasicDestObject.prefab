@@ -350,9 +350,10 @@ GameObject:
   - component: {fileID: 2099215933072029863}
   - component: {fileID: 7701230382766627488}
   - component: {fileID: -832240912786043937}
+  - component: {fileID: -765472334374369896}
   m_Layer: 0
   m_Name: BasicDestObject
-  m_TagString: Object
+  m_TagString: add
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,6 +397,7 @@ MonoBehaviour:
   CanBeUsed: 0
   IsWorkbench: 0
   ItemNumber: 0
+  Inventory: {fileID: 0}
   PlayerPos: {fileID: 0}
 --- !u!111 &8513873436523164523
 Animation:
@@ -456,17 +458,7 @@ MonoBehaviour:
   size: {x: 4, y: 1}
   HasBooks: 0
   HasFood: 0
-  Items:
-  - IsNull: 0
-    sp: {fileID: 21300000, guid: d309020d986e57048a4660dea255489b, type: 3}
-    Instance: {fileID: 2194247385163210103, guid: f1b8250165194fc408d42883ecae702f,
-      type: 3}
-  - IsNull: 1
-    sp: {fileID: 21300000, guid: b1ccff2d8526d8f4a9b226dbf78ebbda, type: 3}
-    Instance: {fileID: 0}
-  - IsNull: 0
-    sp: {fileID: 21300000, guid: d3ac3afc3b225194fa503b573557dae9, type: 3}
-    Instance: {fileID: 0}
+  Items: 0000000000000000ffffffff00000000
   Ui: {fileID: 913416900924864940, guid: 8e9c9635f7e1e1045acda54f7b0f5381, type: 3}
 --- !u!114 &7701230382766627488
 MonoBehaviour:
@@ -507,6 +499,19 @@ MonoBehaviour:
   IsWorkbench: 0
   ItemNumber: 0
   PlayerPos: {fileID: 2099215933048135166}
+--- !u!114 &-765472334374369896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783695832712873991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52520fb2db1ca3f4bbe50f7b5e94355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: -1
 --- !u!1 &8205665511754662692
 GameObject:
   m_ObjectHideFlags: 0

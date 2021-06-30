@@ -8,7 +8,9 @@ public class GameEvent
     public enum EventType
     {
         get,
-        lose
+        lose,
+        changeFood,
+        changeThirst
     }
-    List<int> targets;
+    public List<int> targets;
 }

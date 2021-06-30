@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(DestObjectParams))]
+[RequireComponent(typeof(IDHolder))]
 public class DestObject : MonoBehaviour
 {
     public int hp;
@@ -13,11 +14,11 @@ public class DestObject : MonoBehaviour
     public bool CanBeUsed;
     public bool IsWorkbench;
     public int ItemNumber;
+    public List<GameAction> actions = new List<GameAction>();
     public Contain Inventory;
     public GameObject PlayerPos;
     bool ToDestroy = false;
     Animation anim;
-    public int selfID;
     ParticleSystem PSystem;
 
     // Start is called before the first frame update
@@ -63,10 +64,6 @@ public class DestObject : MonoBehaviour
     {
         PSystem.Stop(true);
         PSystem.Play(true);
-    }
-    public void use()//use by npc
-    {
-        Debug.Log("Used "+gameObject.name);
     }
     // Update is called once per frame
     void FixedUpdate()

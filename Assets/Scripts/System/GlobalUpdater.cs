@@ -1,40 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[ExecuteInEditMode]
 public class GlobalUpdater : MonoBehaviour
 {
     public Sprite Empty;
     //public GameEvent ev;
     public List<Item> items;
-    public bool update;
+    bool upd = true;
+    System.Random rnd = new System.Random();
     
     private void init()
     {
-        Global.Empty = Empty;
-        Global.AllItems = items;
-        GameObject[] temp = GameObject.FindGameObjectsWithTag("ChillPoint");
-        Global.Canvas = GameObject.Find("Canvas");
-        foreach (GameObject g in temp)
+        if (upd)
         {
-            Global.ChillPoints.Add(g.transform);
+            upd = false;
+            AStar._a.init();
+            GameObject[] toadd = GameObject.FindGameObjectsWithTag("add");
+            foreach (GameObject g in toadd)
+            {
+                if (g.name == "EventSystem")
+                    continue;
+                const int e9 = (int)1e9;
+                long t = ((long)rnd.Next(e9)) * e9 + rnd.Next(e9);
+                while (Global.ID.ContainsKey(t))
+                {
+                    t = ((long)rnd.Next(e9)) * e9 + rnd.Next(e9);
+                }
+                IDHolder sc = g.GetComponent<IDHolder>();
+                sc.ID = t;
+                Global.add(t, sc);
+                Vector2Int aPos = AStar._a.getLocalPos(g.transform.position);
+                AStar._a.chunk[aPos.x / AStar._a.chunksize, aPos.y / AStar._a.chunksize].Add(t);
+                sc.chunk = new Vector2Int(aPos.x / AStar._a.chunksize, aPos.y / AStar._a.chunksize);
+                g.tag = "Object";
+            }
+            Global.Empty = Empty;
+            Global.AllItems = items;
+            GameObject[] temp = GameObject.FindGameObjectsWithTag("ChillPoint");
+            Global.Canvas = GameObject.Find("Canvas");
+            foreach (GameObject g in temp)
+            {
+                Global.ChillPoints.Add(g.transform);
+            }
         }
     }
 
-    void Awake()
+    void Start()
     {
-        GameObject.FindGameObjectsWithTag
-        if(Application.isPlaying)
-            init();
+        init();
     }
 
 
 
     void Update()
     {
-        if (update)
+        GameObject[] toadd = GameObject.FindGameObjectsWithTag("add");
+        foreach (GameObject g in toadd)
         {
-
+            if (g.name == "EventSystem")
+                continue;
+            const int e9 = (int)1e9;
+            long t = ((long)rnd.Next(e9)) * e9 + rnd.Next(e9);
+            while (Global.ID.ContainsKey(t))
+            {
+                t = ((long)rnd.Next(e9)) * e9 + rnd.Next(e9);
+            }
+            IDHolder sc = g.GetComponent<IDHolder>();
+            sc.ID = t;
+            Global.add(t, sc);
+            Vector2Int aPos = AStar._a.getLocalPos(g.transform.position);
+            AStar._a.chunk[aPos.x / AStar._a.chunksize, aPos.y / AStar._a.chunksize].Add(t);
+            sc.chunk = new Vector2Int(aPos.x / AStar._a.chunksize, aPos.y / AStar._a.chunksize);
+            g.tag = "Object";
         }
         if (Application.isPlaying)
         {
